@@ -1,18 +1,26 @@
 package ro.msg.learning.shop.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Table;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.MapsId;
 import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import ro.msg.learning.shop.entity.keys.OrderDetailId;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="order_detail")
-
 public class OrderDetail {
     @EmbeddedId
     private OrderDetailId orderDetailId;
@@ -34,6 +42,4 @@ public class OrderDetail {
     @Column(name="quantity", nullable = false)
     @Min(1)
     private Integer quantity;
-
-
 }
