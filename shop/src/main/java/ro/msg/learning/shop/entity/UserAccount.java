@@ -1,15 +1,18 @@
 package ro.msg.learning.shop.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Column;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import org.hibernate.annotations.UuidGenerator;
+import ro.msg.learning.shop.util.UserRole;
 
 import java.util.UUID;
 
@@ -40,6 +43,7 @@ public class UserAccount {
     @Column(name="email_address", nullable=false)
     private String email;
 
+    @Enumerated(EnumType.STRING)
     @Column(name="user_role", nullable=false)
-    private String userRole;
+    private UserRole userRole;
 }

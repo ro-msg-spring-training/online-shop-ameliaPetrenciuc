@@ -13,6 +13,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import ro.msg.learning.shop.entity.keys.StockId;
 
 @Entity
@@ -20,6 +21,7 @@ import ro.msg.learning.shop.entity.keys.StockId;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name="stock")
 public class Stock {
     @EmbeddedId

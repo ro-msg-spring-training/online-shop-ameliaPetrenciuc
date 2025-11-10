@@ -13,7 +13,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-import org.hibernate.annotations.UuidGenerator;
+import lombok.ToString;
+import lombok.Builder;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,14 +25,15 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@ToString
 @Table(name="orders")
 public class Order{
     @Id
-    @UuidGenerator
     private UUID id;
 
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="user_id", nullable=false)
+    @JoinColumn(name="user_id")
     private UserAccount user;
 
     @Column(name="created_at", nullable = false)

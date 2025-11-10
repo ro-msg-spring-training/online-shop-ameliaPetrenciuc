@@ -13,6 +13,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import lombok.Builder;
+
 import ro.msg.learning.shop.entity.keys.OrderDetailId;
 
 @Entity
@@ -20,6 +23,8 @@ import ro.msg.learning.shop.entity.keys.OrderDetailId;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@ToString
 @Table(name="order_detail")
 public class OrderDetail {
     @EmbeddedId
