@@ -70,12 +70,6 @@ class GreedyStrategyTest {
                 .quantity(5)
                 .build()));
 
-//        when(stockRepository.findByProductAndLocation(product2, location2)).thenReturn(Optional.of(Stock.builder()
-//                .product(product2)
-//                .location(location2)
-//                .quantity(5)
-//                .build()));
-
         List<LocationProductQuantity> result = strategy.findLocations(products);
 
         assertThat(result).hasSize(3);

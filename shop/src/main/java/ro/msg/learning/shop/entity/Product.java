@@ -44,7 +44,7 @@ public class Product {
     @Column(name="weight")
     private Double weight;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="category_id")
     private ProductCategory category;
 

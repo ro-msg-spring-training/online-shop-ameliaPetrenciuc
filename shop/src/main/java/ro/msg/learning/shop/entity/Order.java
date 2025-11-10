@@ -37,8 +37,6 @@ public class Order{
     private UserAccount user;
 
     @Column(name="created_at", nullable = false)
-//    @Builder.Default
-//    private LocalDateTime createdAt=LocalDateTime.now();
     private LocalDateTime createdAt;
 
     @Column(name="address_country")

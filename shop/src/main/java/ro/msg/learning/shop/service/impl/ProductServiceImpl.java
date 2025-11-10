@@ -1,6 +1,5 @@
 package ro.msg.learning.shop.service.impl;
 
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import ro.msg.learning.shop.entity.Product;
 import ro.msg.learning.shop.repository.ProductRepository;
@@ -10,7 +9,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-@Transactional
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;

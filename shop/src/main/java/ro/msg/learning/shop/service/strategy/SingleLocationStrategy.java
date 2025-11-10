@@ -33,7 +33,7 @@ public class SingleLocationStrategy implements LocationStrategy {
                 Product product = entry.getKey();
                 int  quantity = entry.getValue();
                 Optional<Stock> stock = stockRepository.findByProductAndLocation(product, loc);
-                if(stock.isEmpty() || stock.get().getQuantity()<quantity){// here i tried to check if location is a valid candidate
+                if(stock.isEmpty() || stock.get().getQuantity()<quantity){
                     hasAllProducts=false;
                     break;
                 }
@@ -41,7 +41,6 @@ public class SingleLocationStrategy implements LocationStrategy {
             if(hasAllProducts){
                 List<LocationProductQuantity> res=new ArrayList<>();
                 for(Map.Entry<Product,Integer> entry:products.entrySet()){
-//                    res.add(new LocationProductQuantity(loc,entry.getKey(),entry.getValue()));
                     res.add(LocationProductQuantity.builder()
                             .location(loc)
                             .product(entry.getKey())

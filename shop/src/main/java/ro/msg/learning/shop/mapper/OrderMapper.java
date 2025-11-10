@@ -5,21 +5,25 @@ import ro.msg.learning.shop.dto.OrderResponseDTO;
 import ro.msg.learning.shop.dto.ProductQuantityDTO;
 import ro.msg.learning.shop.entity.Order;
 import ro.msg.learning.shop.entity.OrderDetail;
+import ro.msg.learning.shop.entity.Product;
+import ro.msg.learning.shop.entity.keys.OrderDetailId;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class OrderMapper {
 
     public static Order toEntity(CreateOrderDTO dto) {
-        return Order.builder()
+        Order order = Order.builder()
+                .id(UUID.randomUUID())
                 .createdAt(dto.getOrderDate())
-                .country(dto.getDeliveryAddress().getCountry())
-                .city(dto.getDeliveryAddress().getCity())
-                .county(dto.getDeliveryAddress().getCounty())
-                .street(dto.getDeliveryAddress().getStreet())
                 .orderDetailList(new ArrayList<>())
                 .build();
+
+        DeliveryAddressMapper.mapDtoToOrder(dto.getDeliveryAddress(), order);
+        return order;
     }
 
     public static OrderResponseDTO toDTO(Order order) {
@@ -42,5 +46,18 @@ public class OrderMapper {
                 .locationId(order.getOrderDetailList().isEmpty() ? null : order.getOrderDetailList().getFirst().getShippedFrom().getId())
                 .products(products)
                 .build();
+    }
+
+    public static List<OrderDetail> toOrderDetails(List<ProductQuantityDTO> products, Order order) {
+        return products.stream()
+                .map(pq -> OrderDetail.builder()
+                        .order(order)
+                        .product(Product.builder()
+                                .id(pq.getProductId())
+                                .build())
+                        .quantity(pq.getQuantity())
+                        .orderDetailId(new OrderDetailId(order.getId(), pq.getProductId()))
+                        .build())
+                .collect(Collectors.toList());
     }
 }
